@@ -10,7 +10,9 @@ const TaskInList = ({index, task, deleteTask}) => {
       </View>
       <View style={styles.taskContainer}>
         <Text style={styles.task}> {task.taskName} </Text>
-        <Icon name="delete" size={21} color="whitesmoke" />
+        <TouchableOpacity onPress={() => deleteTask(index)}>
+          <Icon name="delete" size={21} color="whitesmoke" />
+        </TouchableOpacity>
       </View>
     </View>
   );
