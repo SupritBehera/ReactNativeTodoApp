@@ -10,7 +10,7 @@ const TaskInList = ({taskName}) => {
       </View>
       <View style={styles.taskContainer}>
         <Text style={styles.task}> {taskName} </Text>
-        <Icon name="delete" size={22} color="gray" />
+        <Icon name="delete" size={21} color="whitesmoke" />
       </View>
     </View>
   );

@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, StyleSheet, Text, ScrollView} from 'react-native';
 import TaskInList from './src/components/TaskInList';
+import TaskInputField from './src/components/TaskInputField';
 
 const App = () => {
   return (
@@ -9,6 +10,7 @@ const App = () => {
       <ScrollView>
         <TaskInList taskName="Task 1" />
       </ScrollView>
+      <TaskInputField />
     </View>
   );
 };
