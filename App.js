@@ -4,13 +4,41 @@ import TaskInList from './src/components/TaskInList';
 import TaskInputField from './src/components/TaskInputField';
 
 const App = () => {
+  const [tasks, setTasks] = useState([
+    {
+      taskName: 'Sample Task !',
+      isComplete: true,
+      timeCreated: '',
+      dateCreated: '',
+    },
+  ]);
+
+  const addTask = task => {
+    if (task == null) {
+      return;
+    }
+    setTasks([...tasks, task]);
+  };
+  const deleteTask = deleteIndex => {
+    setTasks(tasks.filter((value, index) => index != deleteIndex));
+  };
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>TODO APP</Text>
       <ScrollView>
-        <TaskInList taskName="Task 1" />
+        {tasks.map((task, index) => {
+          return (
+            <View key={index} style={styles.taskContainer}>
+              <TaskInList
+                index={index}
+                task={task}
+                deleteTask={() => deleteTask(index)}
+              />
+            </View>
+          );
+        })}
       </ScrollView>
-      <TaskInputField />
+      <TaskInputField addTask={addTask} />
     </View>
   );
 };
@@ -27,6 +55,12 @@ const styles = StyleSheet.create({
     marginTop: 30,
     marginBottom: 10,
     marginLeft: 20,
+  },
+  scrollView: {
+    marginBottom: 70,
+  },
+  taskContainer: {
+    marginTop: 20,
   },
 });
 

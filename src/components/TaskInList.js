@@ -2,14 +2,14 @@ import React from 'react';
 import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-const TaskInList = ({taskName}) => {
+const TaskInList = ({index, task, deleteTask}) => {
   return (
     <View style={styles.container}>
       <View style={styles.checkboxContainer}>
-        <Text style={styles.checkBoxPlaceholder}>1</Text>
+        <Text style={styles.checkBoxPlaceholder}>{index}</Text>
       </View>
       <View style={styles.taskContainer}>
-        <Text style={styles.task}> {taskName} </Text>
+        <Text style={styles.task}> {task.taskName} </Text>
         <Icon name="delete" size={21} color="whitesmoke" />
       </View>
     </View>
