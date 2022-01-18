@@ -1,7 +1,8 @@
 import React from 'react';
 import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
-export const TaskInList = ({taskName}) => {
+const TaskInList = ({taskName}) => {
   return (
     <View style={styles.container}>
       <View style={styles.checkboxContainer}>
@@ -9,6 +10,7 @@ export const TaskInList = ({taskName}) => {
       </View>
       <View style={styles.taskContainer}>
         <Text style={styles.task}> {taskName} </Text>
+        <Icon name="delete" size={22} color="gray" />
       </View>
     </View>
   );
@@ -52,3 +54,5 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
 });
+
+export default TaskInList;

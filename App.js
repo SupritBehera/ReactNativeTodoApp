@@ -1,8 +1,8 @@
 import React from 'react';
 import {View, StyleSheet, Text, ScrollView} from 'react-native';
-import {TaskInList} from './src/components/TaskInList';
+import TaskInList from './src/components/TaskInList';
 
-export const App = () => {
+const App = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>TODO APP</Text>
@@ -27,3 +27,5 @@ const styles = StyleSheet.create({
     marginLeft: 20,
   },
 });
+
+export default App;
