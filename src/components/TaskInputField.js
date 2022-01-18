@@ -2,11 +2,28 @@ import React, {useState} from 'react';
 import {View, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-const TaskInputField = () => {
+const TaskInputField = ({addTask}) => {
   const [taskName, setTaskName] = useState('');
   const onSubmitPress = name => {
-    console.warn(name);
     setTaskName('');
+    addTask({
+      taskName: name,
+      isComplete: false,
+      timeCreated: getCurrentTime(),
+      dateCreated: getCurrentDate(),
+    });
+    console.warn(getCurrentTime());
+  };
+  const getCurrentDate = () => {
+    let date = new Date();
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+  };
+  const getCurrentTime = () => {
+    let timeToday = new Date();
+    return `${timeToday.getHours()}:${timeToday.getMinutes()}`;
   };
   return (
     <View style={styles.container}>
