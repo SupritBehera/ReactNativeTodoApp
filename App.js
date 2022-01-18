@@ -1,10 +1,14 @@
 import React from 'react';
-import {View, StyleSheet, Text} from 'react-native';
+import {View, StyleSheet, Text, ScrollView} from 'react-native';
+import {TaskInList} from './src/components/TaskInList';
 
 export const App = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>TODO APP</Text>
+      <ScrollView>
+        <TaskInList taskName="Task 1" />
+      </ScrollView>
     </View>
   );
 };
