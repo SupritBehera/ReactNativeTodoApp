@@ -15,12 +15,11 @@ const TaskInList = ({task}) => {
           text={task.taskName}
           fillColor="violet"
           onPress={() => {
-            () =>
-              dispatch(
-                checkOrUncheckTask({
-                  id: task.id,
-                }),
-              );
+            dispatch(
+              checkOrUncheckTask({
+                id: task.id,
+              }),
+            );
           }}
           textStyle={{color: 'white'}}
         />

@@ -1,17 +1,21 @@
 import React, {useState} from 'react';
 import {View, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import {useDispatch} from 'react-redux';
+import {addTask} from '../redux/tasksSlice';
 
-const TaskInputField = ({addTask}) => {
+const TaskInputField = () => {
   const [taskName, setTaskName] = useState('');
+  const dispatch = useDispatch();
   const onSubmitPress = name => {
     setTaskName('');
-    addTask({
-      taskName: name,
-      isComplete: false,
-      timeCreated: getCurrentTime(),
-      dateCreated: getCurrentDate(),
-    });
+    dispatch(
+      addTask({
+        taskName: name,
+        timeCreated: getCurrentTime(),
+        dateCreated: getCurrentDate(),
+      }),
+    );
   };
   const getCurrentDate = () => {
     let date = new Date();

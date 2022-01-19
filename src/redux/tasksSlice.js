@@ -13,13 +13,15 @@ export const tasksSlice = createSlice({
         dateCreated: action.payload.dateCreated,
       };
       state.push(newTask);
+      // console.warn(state);
+      return state;
     },
     deleteTask: (state, action) => {
       return state.filter(item => item.id != action.payload.id);
     },
     checkOrUncheckTask: (state, action) => {
       const index = state.findIndex(item => item.id == action.payload.id);
-      state[index].isChecked = !state[index].isChecked;
+      state[index].isComplete = !state[index].isComplete;
     },
   },
 });

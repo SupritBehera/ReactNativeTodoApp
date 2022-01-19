@@ -5,7 +5,7 @@ import TaskInList from './src/components/TaskInList';
 import TaskInputField from './src/components/TaskInputField';
 
 const App = () => {
-  const {tasks} = useSelector(state => state.tasks);
+  const tasks = useSelector(state => state.tasks);
 
   return (
     <View style={styles.container}>
@@ -22,7 +22,7 @@ const App = () => {
           }}
         />
       )}
-      {/* <TaskInputField addTask={addTask} /> */}
+      <TaskInputField />
     </View>
   );
 };
