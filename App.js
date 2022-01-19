@@ -4,14 +4,7 @@ import TaskInList from './src/components/TaskInList';
 import TaskInputField from './src/components/TaskInputField';
 
 const App = () => {
-  const [tasks, setTasks] = useState([
-    {
-      taskName: 'Sample Task!',
-      isComplete: true,
-      timeCreated: '',
-      dateCreated: '',
-    },
-  ]);
+  const [tasks, setTasks] = useState([]);
 
   const addTask = task => {
     if (task == null) {
@@ -32,7 +25,7 @@ const App = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>TODO APP</Text>
-      {tasks && (
+      {true && (
         <FlatList
           data={tasks}
           keyExtractor={(item, index) => index.toString() + item.taskName}
