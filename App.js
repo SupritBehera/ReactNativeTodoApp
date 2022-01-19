@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
-import {View, StyleSheet, Text, ScrollView} from 'react-native';
+import {View, StyleSheet, Text, ScrollView, FlatList} from 'react-native';
 import TaskInList from './src/components/TaskInList';
 import TaskInputField from './src/components/TaskInputField';
 
 const App = () => {
   const [tasks, setTasks] = useState([
     {
-      taskName: 'Sample Task !',
+      taskName: 'Sample Task!',
       isComplete: true,
       timeCreated: '',
       dateCreated: '',
@@ -28,23 +28,28 @@ const App = () => {
       !currTasks[checkOrUncheckIndex].isComplete;
     setTasks(currTasks);
   };
+
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>TODO APP</Text>
-      <ScrollView>
-        {tasks.map((task, index) => {
-          return (
-            <View key={index} style={styles.taskContainer}>
-              <TaskInList
-                index={index}
-                task={task}
-                deleteTask={() => deleteTask(index)}
-                checkOrUncheckTask={() => checkOrUncheckTask(index)}
-              />
-            </View>
-          );
-        })}
-      </ScrollView>
+      {tasks && (
+        <FlatList
+          data={tasks}
+          keyExtractor={(item, index) => index.toString() + item.taskName}
+          renderItem={({item, index}) => {
+            return (
+              <View key={index} style={styles.taskContainer}>
+                <TaskInList
+                  index={index}
+                  task={item}
+                  deleteTask={() => deleteTask(index)}
+                  checkOrUncheckTask={() => checkOrUncheckTask(index)}
+                />
+              </View>
+            );
+          }}
+        />
+      )}
       <TaskInputField addTask={addTask} />
     </View>
   );

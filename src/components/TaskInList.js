@@ -11,7 +11,6 @@ const TaskInList = ({index, task, deleteTask, checkOrUncheckTask}) => {
           text={task.taskName}
           fillColor="violet"
           onPress={() => {
-            console.warn(index);
             () => checkOrUncheckTask(index);
           }}
           textStyle={{color: 'white'}}
