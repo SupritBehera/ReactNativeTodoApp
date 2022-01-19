@@ -4,15 +4,13 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
 
 const TaskInList = ({index, task, deleteTask, checkOrUncheckTask}) => {
-  // const [checkboxState, setCheckboxState] = useState(false);
   return (
     <View style={styles.container}>
       <View>
-        {/* <Text style={styles.checkBoxPlaceholder}>{index}</Text> */}
         <BouncyCheckbox
           text={task.taskName}
           fillColor="violet"
-          onPress={isChecked => {
+          onPress={() => {
             console.warn(index);
             () => checkOrUncheckTask(index);
           }}
