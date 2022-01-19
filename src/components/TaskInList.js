@@ -1,15 +1,25 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import BouncyCheckbox from 'react-native-bouncy-checkbox';
 
-const TaskInList = ({index, task, deleteTask}) => {
+const TaskInList = ({index, task, deleteTask, checkOrUncheckTask}) => {
+  // const [checkboxState, setCheckboxState] = useState(false);
   return (
     <View style={styles.container}>
-      <View style={styles.checkboxContainer}>
-        <Text style={styles.checkBoxPlaceholder}>{index}</Text>
+      <View>
+        {/* <Text style={styles.checkBoxPlaceholder}>{index}</Text> */}
+        <BouncyCheckbox
+          text={task.taskName}
+          fillColor="violet"
+          onPress={isChecked => {
+            console.warn(index);
+            () => checkOrUncheckTask(index);
+          }}
+          textStyle={{color: 'white'}}
+        />
       </View>
       <View style={styles.taskContainer}>
-        <Text style={styles.task}> {task.taskName} </Text>
         <TouchableOpacity onPress={() => deleteTask(index)}>
           <Icon name="delete" size={21} color="whitesmoke" />
         </TouchableOpacity>
@@ -22,6 +32,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     marginHorizontal: 22,
+    flex: 1,
   },
   checkboxContainer: {
     backgroundColor: '#3E3364',
@@ -37,15 +48,8 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   taskContainer: {
-    backgroundColor: '#3E3364',
-    borderRadius: 12,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    flex: 1,
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    minHeight: 50,
+    position: 'absolute',
+    right: 15,
   },
   task: {
     color: '#fff',

@@ -12,7 +12,6 @@ const TaskInputField = ({addTask}) => {
       timeCreated: getCurrentTime(),
       dateCreated: getCurrentDate(),
     });
-    console.warn(getCurrentTime());
   };
   const getCurrentDate = () => {
     let date = new Date();
@@ -44,7 +43,7 @@ const TaskInputField = ({addTask}) => {
 
 const styles = StyleSheet.create({
   container: {
-    borderColor: '#fff',
+    borderColor: 'violet',
     backgroundColor: '#3E3364',
     borderWidth: 1,
     marginHorizontal: 20,

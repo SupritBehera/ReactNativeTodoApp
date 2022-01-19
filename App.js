@@ -22,6 +22,12 @@ const App = () => {
   const deleteTask = deleteIndex => {
     setTasks(tasks.filter((value, index) => index != deleteIndex));
   };
+  const checkOrUncheckTask = checkOrUncheckIndex => {
+    const currTasks = [...tasks];
+    currTasks[checkOrUncheckIndex].isComplete =
+      !currTasks[checkOrUncheckIndex].isComplete;
+    setTasks(currTasks);
+  };
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>TODO APP</Text>
@@ -33,6 +39,7 @@ const App = () => {
                 index={index}
                 task={task}
                 deleteTask={() => deleteTask(index)}
+                checkOrUncheckTask={() => checkOrUncheckTask(index)}
               />
             </View>
           );
