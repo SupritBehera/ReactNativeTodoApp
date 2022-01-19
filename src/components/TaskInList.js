@@ -1,9 +1,13 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
+import {checkOrUncheckTask, deleteTask} from '../redux/tasksSlice';
 
-const TaskInList = ({index, task, deleteTask, checkOrUncheckTask}) => {
+const TaskInList = ({task}) => {
+  const dispatch = useDispatch();
+
   return (
     <View style={styles.container}>
       <View>
@@ -11,13 +15,26 @@ const TaskInList = ({index, task, deleteTask, checkOrUncheckTask}) => {
           text={task.taskName}
           fillColor="violet"
           onPress={() => {
-            () => checkOrUncheckTask(index);
+            () =>
+              dispatch(
+                checkOrUncheckTask({
+                  id: task.id,
+                }),
+              );
           }}
           textStyle={{color: 'white'}}
         />
       </View>
       <View style={styles.taskContainer}>
-        <TouchableOpacity onPress={() => deleteTask(index)}>
+        {/* <TouchableOpacity onPress={() => onDeletingTask()}> */}
+        <TouchableOpacity
+          onPress={() =>
+            dispatch(
+              deleteTask({
+                id: task.id,
+              }),
+            )
+          }>
           <Icon name="delete" size={21} color="whitesmoke" />
         </TouchableOpacity>
       </View>

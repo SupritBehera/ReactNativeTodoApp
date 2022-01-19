@@ -1,62 +1,29 @@
-import React, {useState} from 'react';
-import {Provider} from 'react-redux';
-import {store} from './src/redux/store';
+import React from 'react';
+import {useSelector} from 'react-redux';
 import {View, StyleSheet, Text, FlatList} from 'react-native';
 import TaskInList from './src/components/TaskInList';
 import TaskInputField from './src/components/TaskInputField';
 
 const App = () => {
-  const [tasks, setTasks] = useState([
-    // {
-    //   id,
-    //   taskName: 'Sample Task!',
-    //   isComplete: true,
-    //   timeCreated: '',
-    //   dateCreated: '',
-    // },
-  ]);
-
-  const addTask = task => {
-    if (task == null) {
-      return;
-    }
-    setTasks([...tasks, task]);
-  };
-  const deleteTask = deleteIndex => {
-    setTasks(tasks.filter(index => index != deleteIndex));
-  };
-  const checkOrUncheckTask = checkOrUncheckIndex => {
-    const currTasks = [...tasks];
-    currTasks[checkOrUncheckIndex].isComplete =
-      !currTasks[checkOrUncheckIndex].isComplete;
-    setTasks(currTasks);
-  };
+  const {tasks} = useSelector(state => state.tasks);
 
   return (
-    <Provider store={store}>
-      <View style={styles.container}>
-        <Text style={styles.heading}>TODO APP</Text>
-        {tasks && (
-          <FlatList
-            data={tasks}
-            keyExtractor={(item, index) => index.toString() + item.taskName}
-            renderItem={({item, index}) => {
-              return (
-                <View key={index} style={styles.taskContainer}>
-                  <TaskInList
-                    index={index}
-                    task={item}
-                    deleteTask={() => deleteTask(index)}
-                    checkOrUncheckTask={() => checkOrUncheckTask(index)}
-                  />
-                </View>
-              );
-            }}
-          />
-        )}
-        <TaskInputField addTask={addTask} />
-      </View>
-    </Provider>
+    <View style={styles.container}>
+      <Text style={styles.heading}>TODO APP</Text>
+      {tasks && (
+        <FlatList
+          data={tasks}
+          renderItem={({item}) => {
+            return (
+              <View key={item.id} style={styles.taskContainer}>
+                <TaskInList task={item} />
+              </View>
+            );
+          }}
+        />
+      )}
+      {/* <TaskInputField addTask={addTask} /> */}
+    </View>
   );
 };
 
