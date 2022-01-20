@@ -10,18 +10,16 @@ const App = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>TODO APP</Text>
-      {tasks && (
-        <FlatList
-          data={tasks}
-          renderItem={({item}) => {
-            return (
-              <View key={item.id} style={styles.taskContainer}>
-                <TaskInList task={item} />
-              </View>
-            );
-          }}
-        />
-      )}
+      <FlatList
+        data={tasks.ids}
+        renderItem={({item}) => {
+          return (
+            <View key={item} style={styles.taskContainer}>
+              <TaskInList task={tasks.byId[item]} />
+            </View>
+          );
+        }}
+      />
       <TaskInputField />
     </View>
   );
