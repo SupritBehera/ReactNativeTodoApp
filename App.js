@@ -3,9 +3,20 @@ import {useSelector} from 'react-redux';
 import {View, StyleSheet, Text, FlatList} from 'react-native';
 import TaskInList from './src/components/TaskInList';
 import TaskInputField from './src/components/TaskInputField';
+import {createSelector} from '@reduxjs/toolkit';
+
+const taskSelector = createSelector(
+  (state, myString) => state.tasks.ids,
+  state => state.tasks.byId,
+  (ids, byId) => {
+    return ids.map(index => {
+      return byId[index];
+    });
+  },
+);
 
 const App = () => {
-  const tasks = useSelector(state => state.tasks);
+  const tasks = useSelector(state => taskSelector(state, 'hey'));
 
   return (
     <View style={styles.container}>
