@@ -13,6 +13,7 @@ import SQLiteAdapter from '@nozbe/watermelondb/adapters/sqlite';
 
 import schema from './model/schema';
 import migrations from './model/migrations';
+import Task from './src/watermelondb/model/Task';
 // import Post from './model/Post' // ⬅️ You'll import your Models here
 
 // First, create the adapter to the underlying database:
@@ -32,11 +33,9 @@ const adapter = new SQLiteAdapter({
 });
 
 // Then, make a Watermelon database from it!
-const database = new Database({
+export const database = new Database({
   adapter,
-  modelClasses: [
-    // Post, // ⬅️ You'll add Models to Watermelon here
-  ],
+  modelClasses: [Task],
 });
 
 AppRegistry.registerComponent(appName, () => App);
