@@ -4,36 +4,34 @@ import {useDispatch, useSelector} from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
 import {checkOrUncheckTask, deleteTask} from '../redux/tasksSlice';
+import {database} from '../..';
 
 const TaskInList = ({task}) => {
-  const dispatch = useDispatch();
-
+  const updateCheckedStatus = changeId => {
+    await database.write(async () => {
+      const task = await database.get('tasks').find(changeId);
+      await task.update(() => {
+        task.isComplete = !task.isComplete;
+      });
+    });
+  };
+  const deleteTask = deleteId => {
+    const taskToDelete = await database.get('tasks').find(deleteId);
+    await taskToDelete.destroyPermanently();
+  };
   return (
     <View style={styles.container}>
       <View>
         <BouncyCheckbox
           text={task.taskName}
           fillColor="violet"
-          onPress={() => {
-            dispatch(
-              checkOrUncheckTask({
-                id: task.id,
-              }),
-            );
-          }}
+          onPress={() => updateCheckedStatus(task)}
           textStyle={{color: 'white'}}
         />
       </View>
       <View style={styles.taskContainer}>
         {/* <TouchableOpacity onPress={() => onDeletingTask()}> */}
-        <TouchableOpacity
-          onPress={() =>
-            dispatch(
-              deleteTask({
-                id: task.id,
-              }),
-            )
-          }>
+        <TouchableOpacity onPress={() => deleteTask(task.id)}>
           <Icon name="delete" size={21} color="whitesmoke" />
         </TouchableOpacity>
       </View>

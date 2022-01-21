@@ -6,18 +6,17 @@ import TaskInputField from './src/components/TaskInputField';
 import {createSelector} from '@reduxjs/toolkit';
 import {database} from '.';
 
-const postsCollections = database.get('tasks');
-
 const App = () => {
+  const tasks = await database.get('tasks').query().fetch();
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>TODO APP</Text>
       <FlatList
-        data={tasks.ids}
+        data={tasks}
         renderItem={({item}) => {
           return (
-            <View key={item} style={styles.taskContainer}>
-              <TaskInList task={tasks.byId[item]} />
+            <View key={item.id} style={styles.taskContainer}>
+              <TaskInList task={item} />
             </View>
           );
         }}

@@ -6,16 +6,8 @@ import {addTask} from '../redux/tasksSlice';
 
 const TaskInputField = () => {
   const [taskName, setTaskName] = useState('');
-  const dispatch = useDispatch();
   const onSubmitPress = name => {
     setTaskName('');
-    dispatch(
-      addTask({
-        taskName: name,
-        timeCreated: getCurrentTime(),
-        dateCreated: getCurrentDate(),
-      }),
-    );
   };
   const getCurrentDate = () => {
     let date = new Date();
