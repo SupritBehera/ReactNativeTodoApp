@@ -8,5 +8,5 @@ export default class Task extends Model {
   @text('task_name') taskName;
   @field('is_complete') isComplete;
   @field('time_created') timeCreated;
-  @field('date_created') dataCreated;
+  @field('date_created') dateCreated;
 }
