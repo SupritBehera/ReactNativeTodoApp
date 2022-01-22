@@ -1,9 +1,7 @@
 import React from 'react';
 import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
-import {useDispatch, useSelector} from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
-import {checkOrUncheckTask, deleteTask} from '../redux/tasksSlice';
 import {database} from '../..';
 
 const TaskInList = ({task}) => {

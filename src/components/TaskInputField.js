@@ -1,9 +1,7 @@
 import React, {useState} from 'react';
 import {View, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import {useDispatch} from 'react-redux';
 import {database} from '../..';
-import {addTask} from '../redux/tasksSlice';
 
 const TaskInputField = () => {
   const [taskName, setTaskName] = useState('');

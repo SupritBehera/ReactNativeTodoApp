@@ -1,9 +1,7 @@
 import React from 'react';
-import {useSelector} from 'react-redux';
 import {View, StyleSheet, Text, FlatList} from 'react-native';
 import TaskInList from './src/components/TaskInList';
 import TaskInputField from './src/components/TaskInputField';
-import {createSelector} from '@reduxjs/toolkit';
 import {database} from '.';
 
 const App = () => {
